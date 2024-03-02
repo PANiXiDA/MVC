@@ -1,0 +1,81 @@
+﻿@using TestMVC.ViewModels
+@model ViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form asp-controller="Home" asp-action="TeacherTimetable" method="post">
+    <label for="teacher">Введите имя учителя:</label><br>
+    <input type="text" id="teacher" name="teacher"><br><br>
+    <input type="submit" value="Перейти к расписанию">
+</form>
+
+
+
+<head>
+    <title>Получение значения из input</title>
+    <script>
+        function addNum(el) {
+            var groupNumber = el.textContent;
+            window.location.href = "https://localhost:7267/Home/Timetable?group=" + groupNumber;
+        }
+    </script>
+</head>
+<body>
+    <h2>1-ый курс:</h2>
+    <div>
+        @foreach (var group in Model.Groups)
+        {
+            if (group.Group_Number / 100 == 1)
+            {
+                <a href="#" onclick="addNum(this)">@group.Group_Number</a>
+            }
+        }
+    </div>
+    <div>
+    <h2>2-ой курс:</h2>
+        @foreach (var group in Model.Groups)
+        {
+            TempData["Group"] = @group.Group_Number;
+            <tr>
+                @if (group.Group_Number / 100 == 2)
+                {
+                    <a href="#" onclick="addNum(this)">@group.Group_Number</a>
+                }
+            </tr>
+        }
+    </div>
+    <div>
+        <h2>3-ий курс:</h2>
+        @foreach (var group in Model.Groups)
+        {
+            TempData["Group"] = @group.Group_Number;
+            <tr>
+                @if (group.Group_Number / 100 == 3)
+                {
+                    <a href="#" onclick="addNum(this)">@group.Group_Number</a>
+                }
+            </tr>
+        }
+    </div>
+    <div>
+        <h2>4-ый курс:</h2>
+        @foreach (var group in Model.Groups)
+        {
+            TempData["Group"] = @group.Group_Number;
+            <tr>
+                @if (group.Group_Number / 100 == 4)
+                {
+                    <a href="#" onclick="addNum(this)">@group.Group_Number</a>
+                }
+            </tr>
+        }
+    </div>
+</body>
+
+
+
+
+
+
+

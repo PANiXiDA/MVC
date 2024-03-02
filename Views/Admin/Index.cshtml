@@ -1,0 +1,189 @@
+﻿@using TestMVC.ViewModels
+@model ViewModel
+@{
+    ViewData["Title"] = "Admin Page";
+}
+
+<!-- Таблица групп -->
+<table width="600" border="1">
+    <h2>Список групп:</h2>
+    <tr>
+        <th>Id</th>
+        <th>Number</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var group in Model.Groups)
+    {
+        <tr>
+            <td>@group.Group_ID</td>
+            <td>@group.Group_Number</td>
+            <td>
+                <form asp-controller="Admin" asp-action="DeleteGroup" method="post">
+                    <input type="hidden" name="id" value="@group.Group_ID" />
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+
+
+<h2>Add Group</h2>
+
+<form asp-controller="Admin" asp-action="PostGroup" method="post">
+    <div>
+        <label for="number">Group_Number:</label>
+        <input type="number" id="number" name="Group_Number" required />
+        <button type="submit">Add Group</button>
+    </div>
+</form>
+
+<!-- Таблица студентов -->
+<table width="600" border="1">
+    <h2>Список студентов:</h2>
+    <tr>
+        <th>Id</th>
+        <th>Fio</th>
+        <th>Group Number</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var student in Model.Students)
+    {
+        <tr>
+            <td>@student.Student_ID</td>
+            <td>@student.Student_Fio</td>
+            <td>@student.Group_Number</td>
+            <td>
+                <form asp-controller="Admin" asp-action="DeleteStudent" method="post">
+                    <input type="hidden" name="id" value="@student.Student_ID" />
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+
+<h2>Add Student</h2>
+
+<form asp-controller="Admin" asp-action="PostStudent" method="post">
+    <label for="text">Student_Fio:</label>
+    <input type="text" id="name" name="Student_Fio" required />
+    <label for="number">Group_Number:</label>
+    <input type="number" id="number" name="Group_Number" required />
+    <button type="submit">Add Student</button>
+
+</form>
+
+<!-- Таблица Классов -->
+<table width="600" border="1">
+    <h2>Список классов:</h2>
+    <tr>
+        <th>Id</th>
+        <th>Number</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var classroom in Model.Classrooms)
+    {
+        <tr>
+            <td>@classroom.Classroom_ID</td>
+            <td>@classroom.Classroom_Number</td>
+            <td>
+                <form asp-controller="Admin" asp-action="DeleteClassroom" method="post">
+                    <input type="hidden" name="id" value="@classroom.Classroom_ID" />
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+
+<h2>Add Classroom:</h2>
+
+<form asp-controller="Admin" asp-action="PostClassroom" method="post">
+    <label for="number">Group_Number:</label>
+    <input type="number" id="number" name="Classroom_Number" required />
+    <button type="submit">Add Classroom</button>
+</form>
+
+<!-- Таблица предметов -->
+<table width="1200" border="1">
+    <h2>Список предметов:</h2>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Weekday</th>
+        <th>ClassroomNumber</th>
+        <th>Group</th>
+        <th>Lesson_Number</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var lesson in Model.Lessons)
+    {
+        <tr>
+            <td>@lesson.Lesson_ID</td>
+            <td>@lesson.Lesson_Name</td>
+            <td>@lesson.Weekday</td>
+            <td>@lesson.Classroom_Number</td>
+            <td>@lesson.Lesson_GroupNumber</td>
+            <td>@lesson.Lesson_Number</td>
+            <td>
+                <form asp-controller="Admin" asp-action="DeleteLesson" method="post">
+                    <input type="hidden" name="id" value="@lesson.Lesson_ID" />
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+
+<h2>Add Lesson:</h2>
+
+<form asp-controller="Admin" asp-action="PostLesson" method="post">
+    <label for="number">Lesson_Name:</label>
+    <input type="text" id="Lesson_Name" name="Lesson_Name" required />
+    <label for="number">Weekday:</label>
+    <input type="text" id="Weekday" name="Weekday" required />
+    <label for="number">Classroom_Number:</label>
+    <input type="number" id="Classroom_Number" name="Classroom_Number" required />
+    <label for="number">Lesson_GroupNumber:</label>
+    <input type="number" id="Lesson_GroupNumber" name="Lesson_GroupNumber" required />
+    <label for="number">Lesson_Number:</label>
+    <input type="number" id="Lesson_Number" name="Lesson_Number" required />
+    <button type="submit">Add Lesson</button>
+</form>
+
+<!-- Таблица учителей -->
+
+<table width="600" border="1">
+    <h2>Список учителей:</h2>
+    <tr>
+        <th>Id</th>
+        <th>Fio</th>
+        <th>Lesson_Name</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var teacher in Model.Teachers)
+    {
+        <tr>
+            <td>@teacher.Teacher_ID</td>
+            <td>@teacher.Teacher_Fio</td>
+            <td>@teacher.Lesson_Name</td>
+            <td>
+                <form asp-controller="Admin" asp-action="DeleteTeacher" method="post">
+                    <input type="hidden" name="id" value="@teacher.Teacher_ID" />
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+
+<h2>Add teacher:</h2>
+
+<form asp-controller="Admin" asp-action="PostTeachert" method="post">
+    <label for="number">Teacher_Fio:</label>
+    <input type="text" id="Teacher_Fio" name="Teacher_Fio" required />
+    <label for="number">Lesson_Name:</label>
+    <input type="text" id="Lesson_Name" name="Lesson_Name" required />
+    <button type="submit">Add teacher</button>
+</form>

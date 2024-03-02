@@ -1,0 +1,208 @@
+﻿@using TestMVC.ViewModels
+@model ViewModel
+@{
+    ViewData["Title"] = "Timetable";
+    var timeMappings = new Dictionary<int, (string startTime, string endTime)>
+    {
+        { 1, ("8:20", "9:50") },
+        { 2, ("10:00", "11:35") },
+        { 3, ("12:05", "13:40") },
+        { 4, ("13:50", "15:25") },
+        { 5, ("15:35", "17:10") }
+    };
+}
+
+
+<html>
+<head>
+    <title>Расписание</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <h1>Расписание</h1>
+    <table>
+        <caption align="top">Понедельник</caption>
+        <tr>
+            <th>Номер пары</th>
+            <th>Предмет</th>
+            <th>Преподаватель</th>
+            <th>Аудитория</th>
+            <th>Начало пары</th>
+            <th>Конец пары</th>
+        </tr>
+        @for (int i = 1; i <= 5; i++)
+        {
+            @foreach (var lesson in Model.Lessons)
+            {
+                @if (lesson.Lesson_GroupNumber == Model.GroupNumber && lesson.Weekday == "Понедельник" && lesson.Lesson_Number == i)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@lesson.Lesson_Name</td>
+                        <td>@Model.Teachers.Where(t => t.Lesson_Name == lesson.Lesson_Name).First().Teacher_Fio</td>
+                        <td>@lesson.Classroom_Number</td>
+                        <td>@timeMappings[i].startTime</td>
+                        <td>@timeMappings[i].endTime</td>
+                    </tr>
+                }
+            }
+        }
+    </table>
+    <table>
+        <caption align="top">Вторник</caption>
+        <tr>
+            <th>Номер пары</th>
+            <th>Предмет</th>
+            <th>Преподаватель</th>
+            <th>Аудитория</th>
+            <th>Начало пары</th>
+            <th>Конец пары</th>
+        </tr>
+        @for (int i = 1; i <= 5; i++)
+        {
+            @foreach (var lesson in Model.Lessons)
+            {
+                @if (lesson.Lesson_GroupNumber == Model.GroupNumber && lesson.Weekday == "Вторник" && lesson.Lesson_Number == i)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@lesson.Lesson_Name</td>
+                        <td>@Model.Teachers.Where(t => t.Lesson_Name == lesson.Lesson_Name).First().Teacher_Fio</td>
+                        <td>@lesson.Classroom_Number</td>
+                        <td>@timeMappings[i].startTime</td>
+                        <td>@timeMappings[i].endTime</td>
+                    </tr>
+                }
+            }
+        }
+    </table>
+    <table>
+        <caption align="top">Среда</caption>
+        <tr>
+            <th>Номер пары</th>
+            <th>Предмет</th>
+            <th>Преподаватель</th>
+            <th>Аудитория</th>
+            <th>Начало пары</th>
+            <th>Конец пары</th>
+        </tr>
+        @for (int i = 1; i <= 5; i++)
+        {
+            @foreach (var lesson in Model.Lessons)
+            {
+                @if (lesson.Lesson_GroupNumber == Model.GroupNumber && lesson.Weekday == "Среда" && lesson.Lesson_Number == i)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@lesson.Lesson_Name</td>
+                        <td>@Model.Teachers.Where(t => t.Lesson_Name == lesson.Lesson_Name).First().Teacher_Fio</td>
+                        <td>@lesson.Classroom_Number</td>
+                        <td>@timeMappings[i].startTime</td>
+                        <td>@timeMappings[i].endTime</td>
+                    </tr>
+                }
+            }
+        }
+    </table>
+    <table>
+        <caption align="top">Четверг</caption>
+        <tr>
+            <th>Номер пары</th>
+            <th>Предмет</th>
+            <th>Преподаватель</th>
+            <th>Аудитория</th>
+            <th>Начало пары</th>
+            <th>Конец пары</th>
+        </tr>
+        @for (int i = 1; i <= 5; i++)
+        {
+            @foreach (var lesson in Model.Lessons)
+            {
+                @if (lesson.Lesson_GroupNumber == Model.GroupNumber && lesson.Weekday == "Четверг" && lesson.Lesson_Number == i)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@lesson.Lesson_Name</td>
+                        <td>@Model.Teachers.Where(t => t.Lesson_Name == lesson.Lesson_Name).First().Teacher_Fio</td>
+                        <td>@lesson.Classroom_Number</td>
+                        <td>@timeMappings[i].startTime</td>
+                        <td>@timeMappings[i].endTime</td>
+                    </tr>
+                }
+            }
+        }
+    </table>
+    <table>
+        <caption align="top">Пятница</caption>
+        <tr>
+            <th>Номер пары</th>
+            <th>Предмет</th>
+            <th>Преподаватель</th>
+            <th>Аудитория</th>
+            <th>Начало пары</th>
+            <th>Конец пары</th>
+        </tr>
+        @for (int i = 1; i <= 5; i++)
+        {
+            @foreach (var lesson in Model.Lessons)
+            {
+                @if (lesson.Lesson_GroupNumber == Model.GroupNumber && lesson.Weekday == "Пятница" && lesson.Lesson_Number == i)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@lesson.Lesson_Name</td>
+                        <td>@Model.Teachers.Where(t => t.Lesson_Name == lesson.Lesson_Name).First().Teacher_Fio</td>
+                        <td>@lesson.Classroom_Number</td>
+                        <td>@timeMappings[i].startTime</td>
+                        <td>@timeMappings[i].endTime</td>
+                    </tr>
+                }
+            }
+        }
+    </table>
+    <table>
+        <caption align="top">Суббота</caption>
+        <tr>
+            <th>Номер пары</th>
+            <th>Предмет</th>
+            <th>Преподаватель</th>
+            <th>Аудитория</th>
+            <th>Начало пары</th>
+            <th>Конец пары</th>
+        </tr>
+        @for (int i = 1; i <= 5; i++)
+        {
+            @foreach (var lesson in Model.Lessons)
+            {
+                @if (lesson.Lesson_GroupNumber == Model.GroupNumber && lesson.Weekday == "Суббота" && lesson.Lesson_Number == i)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@lesson.Lesson_Name</td>
+                        <td>@Model.Teachers.Where(t => t.Lesson_Name == lesson.Lesson_Name).First().Teacher_Fio</td>
+                        <td>@lesson.Classroom_Number</td>
+                        <td>@timeMappings[i].startTime</td>
+                        <td>@timeMappings[i].endTime</td>
+                    </tr>
+                }
+            }
+        }
+    </table>
+</body>
+</html>
+
